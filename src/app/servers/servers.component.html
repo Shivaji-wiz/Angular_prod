@@ -1,0 +1,47 @@
+<p>servers works!</p>
+
+<label>Server Name:</label>
+<!-- <input type="text" class="form-control"
+(input)="onUpdateServer($event)"> -->
+
+<input type="text" class="form-control" 
+[(ngModel)] = "serverName">
+
+<!-- <p>{{serverName}}</p> -->
+
+<button class="btn btn-primary" [disabled]="!allowServer" (click) = "onCreateServer()">Add Server</button>
+<!-- <p>{{serverCreationStatus}}</p> -->
+<!-- <p [innerText]="allowServer"></p> -->
+<p *ngIf="serverCreated; else noServer">server is created successfully! server name is {{serverName}}</p>
+
+<!-- <p *ngIf="!serverCreated">server is not created yet.</p>  -->
+<!-- alternate method for ng if-else -->
+
+<ng-template #noServer><p>
+    No server was created.
+</p></ng-template>
+
+<app-server *ngFor="let server of servers"></app-server>
+
+
+<hr>
+<label>Username:</label>
+<input type="text" class="form-control"
+[(ngModel)] = "username">
+
+<p>{{username}}</p>
+
+<button class="btn btn-primary" 
+[disabled]="username===''"
+(click) = "username=''">reset usename</button>
+
+<hr>
+
+<!-- <button class="btn btn-primary" (click)="secretStat = !secretStat">Display details</button> -->
+<button class="btn btn-primary" (click)="onToggleDisplay()">Display details</button>
+<p *ngIf="secretStat">Secret password = Tuna</p>
+
+<p *ngFor="let t of timeStamp; let i = index" 
+[ngStyle]="{backgroundColor: i>=4?'lightblue' : 'transparent'}"
+[ngClass]="{'white-text': i>=4}">
+{{t}}</p>
